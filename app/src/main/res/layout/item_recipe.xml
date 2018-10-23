@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/ivRecipe"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@drawable/default_image_recipe" />
 
@@ -31,8 +31,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="#ffffff"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:text="TITLE RECIPE" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </FrameLayout>
 </layout>

@@ -75,12 +75,12 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
         }
 
         public void bind(final int position) {
-            binding.tvStep.setText(stepList.get(position).getShortDescription());
-            if (stepList.get(position).getVideoURL().isEmpty()) {
-                binding.tvShowStep.setVisibility(View.INVISIBLE);
-            } else {
-                binding.getRoot().setOnClickListener(v -> listener.onStepClick(position));
+            if (position != 0)
+                binding.tvStep.setText(position + ". " + stepList.get(position).getShortDescription());
+            else {
+                binding.tvStep.setText(stepList.get(position).getShortDescription());
             }
+            binding.getRoot().setOnClickListener(v -> listener.onStepClick(position));
         }
     }
 

@@ -18,9 +18,11 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Ingredients"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/ingredients"
                 android:textColor="@color/colorAccent"
-                android:textSize="35dp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView
@@ -36,9 +38,9 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Steps"
-                android:textColor="@color/colorPrimary"
-                android:textSize="35dp"
+                android:text="@string/steps"
+                android:textColor="@color/colorAccent"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <android.support.v7.widget.RecyclerView

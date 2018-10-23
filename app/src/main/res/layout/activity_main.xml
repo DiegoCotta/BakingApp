@@ -11,14 +11,14 @@
             android:id="@+id/rvReceipes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_recipe"
-            android:padding="8dp" />
+            android:padding="8dp"
+            tools:listitem="@layout/item_recipe" />
 
         <FrameLayout
             android:id="@+id/flLoading"
-            android:background="#84000000"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#84000000"
             android:visibility="gone">
 
             <ProgressBar

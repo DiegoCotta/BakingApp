@@ -27,8 +27,8 @@ public interface Service {
         return new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(getLoggingCapableHttpClient())
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 
