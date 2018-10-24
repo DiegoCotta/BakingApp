@@ -1,5 +1,6 @@
 package com.example.baking.view.activities;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.FragmentManager;
@@ -33,6 +34,7 @@ public class RecipeStepActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_step);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         if (getIntent().hasExtra(RECIPE_KEY)) {
             recipe = getIntent().getParcelableExtra(RECIPE_KEY);
         }
@@ -47,8 +49,8 @@ public class RecipeStepActivity extends AppCompatActivity {
                 .replace(R.id.stepFragment, fragment)
                 .commit();
 
-        if (binding.flBack != null)
-            binding.flBack.setOnClickListener(view -> {
+        if (binding.stepControl != null)
+            binding.stepControl.flBack.setOnClickListener(view -> {
                 if (stepPos > 0) {
                     StepFragment fragment1 = StepFragment.newInstance(recipe.getSteps().get(--stepPos));
                     fragmentManager.beginTransaction()
@@ -56,13 +58,14 @@ public class RecipeStepActivity extends AppCompatActivity {
                             .commit();
                 }
             });
-        if (binding.flNext != null)
-            binding.flNext.setOnClickListener(view -> {
+        if (binding.stepControl != null)
+            binding.stepControl.flNext.setOnClickListener(view -> {
                 if (stepPos < recipe.getSteps().size() - 1) {
                     StepFragment fragment1 = StepFragment.newInstance(recipe.getSteps().get(++stepPos));
                     fragmentManager.beginTransaction()
                             .replace(R.id.stepFragment, fragment1)
                             .commit();
+
                 }
             });
     }

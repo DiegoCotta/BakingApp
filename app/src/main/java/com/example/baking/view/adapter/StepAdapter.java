@@ -1,6 +1,8 @@
 package com.example.baking.view.adapter;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +24,16 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
     private StepViewHolderListener listener;
 
-    public StepAdapter(List<Step> stepList, StepViewHolderListener listener) {
+    private boolean isTwoPanel;
+    private int selectedpos = -1;
+    private Context context;
+
+    public StepAdapter(List<Step> stepList, StepViewHolderListener listener, boolean isTwoPanel, Context context) {
         this.stepList = stepList;
+        selectedpos = 0;
         this.listener = listener;
+        this.isTwoPanel = isTwoPanel;
+        this.context = context;
     }
 
     @Override
@@ -80,8 +89,31 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
             else {
                 binding.tvStep.setText(stepList.get(position).getShortDescription());
             }
-            binding.getRoot().setOnClickListener(v -> listener.onStepClick(position));
+            if (isTwoPanel)
+                if (selectedpos == position)
+                    binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.colorAccentTransparent));
+                else
+                    binding.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.white));
+            binding.getRoot().setOnClickListener(v -> {
+                if (selectedpos != position) {
+                    listener.onStepClick(position);
+                    if (isTwoPanel) {
+                        selectedpos = position;
+                        notifyDataSetChanged();
+                    }
+                }
+            });
         }
+    }
+
+    public int getSelectedpos() {
+        return selectedpos;
+    }
+
+    public void setSelectedpos(int selectedpos) {
+        this.selectedpos = selectedpos;
+        notifyDataSetChanged();
+
     }
 
     public interface StepViewHolderListener {
