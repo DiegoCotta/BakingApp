@@ -10,6 +10,9 @@ import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
+import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,13 +26,26 @@ import com.example.baking.databinding.ActivityMainBinding;
 import com.example.baking.model.Recipe;
 import com.example.baking.view.adapter.RecipeAdapter;
 
-public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterListener, MainViewModel.MainViewModelListener{
+public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterListener, MainViewModel.MainViewModelListener {
 
     ActivityMainBinding binding;
     private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
 
     MainViewModel viewModel;
     RecipeAdapter recipeAdapter;
+
+
+    @Nullable
+    private CountingIdlingResource mIdlingResource;
+
+    @VisibleForTesting
+    @NonNull
+    public IdlingResource getIdlingResource() {
+        if (mIdlingResource == null) {
+            mIdlingResource = new CountingIdlingResource("MainActivityIdlingResource");
+        }
+        return mIdlingResource;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +72,13 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     private void setupViewModel() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         viewModel.setListener(this);
+        if (mIdlingResource != null)
+            mIdlingResource.increment();
         viewModel.getReceipes().observe(this, recipes -> {
             recipeAdapter.setReceipeList(recipes);
             binding.flLoading.setVisibility(View.GONE);
+            if (mIdlingResource != null)
+                mIdlingResource.decrement();
         });
         binding.flLoading.setVisibility(View.VISIBLE);
         viewModel.getRecipesFromService();
