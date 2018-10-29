@@ -55,14 +55,17 @@
         android:paddingTop="4dp">
 
         <ImageButton
+            android:contentDescription="@string/exo_controls_next_description"
             android:id="@id/exo_prev"
             style="@style/ExoMediaButton.Previous" />
 
         <ImageButton
+            android:contentDescription="@string/exo_controls_play_description"
             android:id="@id/exo_play"
             style="@style/ExoMediaButton.Play" />
 
         <ImageButton
+            android:contentDescription="@string/exo_controls_pause_description"
             android:id="@id/exo_pause"
             style="@style/ExoMediaButton.Pause" />
 

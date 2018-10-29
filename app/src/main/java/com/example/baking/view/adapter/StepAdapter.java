@@ -85,7 +85,7 @@ public class StepAdapter extends RecyclerView.Adapter<StepAdapter.StepViewHolder
 
         public void bind(final int position) {
             if (position != 0)
-                binding.tvStep.setText(position + ". " + stepList.get(position).getShortDescription());
+                binding.tvStep.setText(position + context.getString(R.string.point_separ) + stepList.get(position).getShortDescription());
             else {
                 binding.tvStep.setText(stepList.get(position).getShortDescription());
             }

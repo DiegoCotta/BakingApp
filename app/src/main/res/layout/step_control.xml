@@ -25,12 +25,14 @@
                 android:padding="16dp">
 
                 <ImageView
+                    android:contentDescription="@string/exo_controls_previous_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/exo_controls_previous"
                     android:tint="@color/colorPrimaryDark" />
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/back"
@@ -43,13 +45,14 @@
                 android:id="@+id/flNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="16dp">
 
                 <ImageView
+                    android:contentDescription="@string/exo_controls_next_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/exo_controls_next"

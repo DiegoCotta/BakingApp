@@ -20,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.baking.util.Utils;
 import com.example.baking.viewmodel.MainViewModel;
 import com.example.baking.R;
 import com.example.baking.databinding.ActivityMainBinding;
@@ -29,7 +30,6 @@ import com.example.baking.view.adapter.RecipeAdapter;
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterListener, MainViewModel.MainViewModelListener {
 
     ActivityMainBinding binding;
-    private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
 
     MainViewModel viewModel;
     RecipeAdapter recipeAdapter;
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     @Override
     public void onClick(Recipe recipe) {
+        Utils.saveRecipePref(recipe,this);
         Intent intent = new Intent(this, RecipeDetailsActivity.class);
         intent.putExtra(RecipeDetailsActivity.RECIPE_KEY, recipe);
         startActivity(intent);

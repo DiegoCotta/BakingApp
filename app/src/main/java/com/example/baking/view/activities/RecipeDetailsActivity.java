@@ -34,11 +34,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
         binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
 
 
-        if (binding.flRecipeStep != null) {
-            mTwoPane = true;
-        } else {
-            mTwoPane = false;
-        }
+        mTwoPane = binding.flRecipeStep != null;
 
 
         if (getIntent().hasExtra(RECIPE_KEY)) {
