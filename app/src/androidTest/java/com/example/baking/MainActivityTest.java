@@ -26,7 +26,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withResourceName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.example.baking.utils.TestUtils.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 
@@ -60,12 +59,6 @@ public class MainActivityTest {
 
     @Test
     public void itemClickTest() {
-
-        //https://stackoverflow.com/questions/31394569/how-to-assert-inside-a-recyclerview-in-espresso
-
-        onView(withRecyclerView((R.id.rvReceipes))
-                .atPositionOnView(ITEM_POSITION, R.id.tvRecipeTitle))
-                .check(matches(withText(NAME_SELECTED)));
 
         // https://github.com/googlesamples/android-testing/blob/master/ui/espresso/RecyclerViewSample/app/src/androidTest/java/com/example/android/testing/espresso/RecyclerViewSample/RecyclerViewSampleTest.java
         onView(withId((R.id.rvReceipes)))

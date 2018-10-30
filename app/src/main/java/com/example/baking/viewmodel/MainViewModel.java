@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.example.baking.R;
 import com.example.baking.model.Recipe;
-import com.example.baking.service.Service;
+import com.example.baking.service.ClientService;
 import com.example.baking.util.Utils;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public void getRecipesFromService() {
         if (Utils.hasInternet(getApplication())) {
-            Service.retrofit.create(Service.class).getRecipes().enqueue(new Callback<List<Recipe>>() {
+            ClientService.retrofit.create(ClientService.class).getRecipes().enqueue(new Callback<List<Recipe>>() {
                 @Override
                 public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
                     receipes.setValue(response.body());

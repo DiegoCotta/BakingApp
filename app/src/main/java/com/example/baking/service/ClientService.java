@@ -18,7 +18,7 @@ import retrofit2.http.GET;
  */
 
 //Reference https://zeroturnaround.com/rebellabs/getting-started-with-retrofit-2/
-public interface Service {
+public interface ClientService {
 
     @GET("baking.json")
     Call<List<Recipe>> getRecipes();

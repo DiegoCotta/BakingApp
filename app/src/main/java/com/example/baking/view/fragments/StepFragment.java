@@ -34,7 +34,8 @@ import com.squareup.picasso.Target;
 
 public class StepFragment extends Fragment {
 
-    public static final String STEP_KEY = "step-key";
+    private static final String STEP_KEY = "step-key";
+    private static final String RECIPE_STEP = "RecipeStep";
     FragmentStepBinding binding;
     private SimpleExoPlayer mExoPlayer;
 
@@ -111,7 +112,7 @@ public class StepFragment extends Fragment {
                 }
             });
         } else {
-            String userAgent = Util.getUserAgent(getActivity(), "RecipeStep");
+            String userAgent = Util.getUserAgent(getActivity(), RECIPE_STEP);
 
             MediaSource mediaSource = new ExtractorMediaSource(Uri.parse(step.getVideoURL()), new DefaultDataSourceFactory(
                     getActivity(), userAgent), new DefaultExtractorsFactory(), null, null);

@@ -1,10 +1,12 @@
 package com.example.baking.view.activities;
 
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.databinding.DataBindingUtil;
@@ -26,6 +28,7 @@ import com.example.baking.R;
 import com.example.baking.databinding.ActivityMainBinding;
 import com.example.baking.model.Recipe;
 import com.example.baking.view.adapter.RecipeAdapter;
+import com.example.baking.widget.BakingWidget;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterListener, MainViewModel.MainViewModelListener {
 
@@ -86,10 +89,20 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     @Override
     public void onClick(Recipe recipe) {
-        Utils.saveRecipePref(recipe,this);
+        Utils.saveRecipePref(recipe, this);
+        updateWidgets();
         Intent intent = new Intent(this, RecipeDetailsActivity.class);
         intent.putExtra(RecipeDetailsActivity.RECIPE_KEY, recipe);
         startActivity(intent);
+    }
+
+    private void updateWidgets() {
+        Intent intentWidget = new Intent(this, BakingWidget.class);
+        intentWidget.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        ComponentName componentName = new ComponentName(this, BakingWidget.class);
+        int[] ids = AppWidgetManager.getInstance(this).getAppWidgetIds(componentName);
+        intentWidget.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        sendBroadcast(intentWidget);
     }
 
     @Override

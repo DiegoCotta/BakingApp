@@ -30,6 +30,7 @@ public class BakingWidget extends AppWidgetProvider {
 
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lvRecipe);
 
 
     }
